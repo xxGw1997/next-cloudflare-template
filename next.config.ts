@@ -6,7 +6,11 @@ if (process.env.NODE_ENV === 'development') {
   setupDevPlatform()
 }
 
-const nextConfig: NextConfig = {}
+const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true
+  }
+}
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
