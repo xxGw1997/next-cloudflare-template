@@ -1,8 +1,9 @@
 import { SessionProvider } from 'next-auth/react'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
-import { locales, routing } from '@/i18n/routing'
+import { getTranslations } from 'next-intl/server'
 
+import { locales, routing } from '@/i18n/routing'
 import Container from '@/components/container'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
@@ -13,20 +14,31 @@ import type { Metadata } from 'next'
 
 import '../globals.css'
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://blog.zzwxy.xyz'),
-  title: {
-    template: '%s | BrandName',
-    default: 'BrandName'
-  },
-  description: 'Think, Write, Code',
-  icons: {
-    icon: '/logo.svg'
-  },
-  authors: [{ name: 'xxgw', url: 'https://github.com/xxgw1997' }],
-  creator: 'xxgw',
-  openGraph: {
-    images: ['/logo.svg']
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('siteInfo.meta')
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    icons: { icon: '/logo.svg' },
+    authors: [
+      {
+        name: 'xxgw',
+        url: 'https://github.com/xxgw1997'
+      }
+    ],
+    creator: 'xxgw',
+    openGraph: {
+      images: ['/logo.svg']
+    },
+    alternates: {
+      languages: {
+        'x-default': process.env.NEXT_PUBLIC_BASE_URL,
+        ...Object.fromEntries(
+          locales.map((locale) => [locale.code, `${process.env.NEXT_PUBLIC_BASE_URL}/${locale.code}`])
+        )
+      }
+    }
   }
 }
 

@@ -1,10 +1,69 @@
 {
+  "siteInfo": {
+    "brandName": "Next Template",
+    "description": "Think, Write, Code",
+    "meta": {
+      "title": "Next Template - Think, Write, Code",
+      "description": "A responsive, lightweight, and accessible front-end framework using Next.js, TypeScript, and Tailwind CSS."
+    }
+  },
+  "login": {
+    "modal": {
+      "title": "欢迎来到Next模板",
+      "description": "登录以继续您的旅程",
+      "triggerText": "登录"
+    },
+    "form": {
+      "continueWithGoogle": "使用Google继续",
+      "continueWithGithub": "使用GitHub继续",
+      "orContinueWith": "或使用以下方式继续",
+      "emailPlaceholder": "输入您的电子邮件",
+      "signInWithEmail": "使用电子邮件登录"
+    }
+  },
+  "footer": {
+    "description": "通过人工智能赋能对话。体验LinkAI带来的沟通未来。",
+    "contact": {
+      "title": "联系我们",
+      "intro": "如有查询，请联系：",
+      "email": "contact@yourdomain.com",
+      "responseTime": "响应时间：24-48小时内"
+    },
+    "quickLinks": {
+      "title": "快速链接",
+      "home": "首页",
+      "aboutUs": "关于我们",
+      "refundPolicy": "退款政策",
+      "subscriptionTerms": "订阅条款"
+    },
+    "copyright": " 2024 Cozyai LLC. 版权所有。"
+  },
+  "common": {
+    "previous": "上一页",
+    "next": "下一页",
+    "morePage": "更多页面",
+    "close": "关闭"
+  },
+  "headers": {
+    "home": "首页",
+    "about": "关于"
+  },
   "HomePage": {
-    "title": "你好，世界！",
-    "about": "前往关于页面"
+    "title": "你好",
+    "about": "前往关于页面",
+    "meta": {
+      "title": "首页 | {brandName}",
+      "description": "欢迎来到 {brandName} 的首页"
+    }
   },
   "AboutPage": {
     "title": "关于本站",
-    "home": "前往首页"
+    "home": "前往首页",
+    "meta": {
+      "title": "标题 | {brandName}",
+      "description": "欢迎来到 {brandName} 的关于页面"
+    },
+    "settings": "设置",
+    "description": "这是我们网站的描述"
   }
 }
