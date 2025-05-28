@@ -1,6 +1,7 @@
 import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import NextAuth from 'next-auth'
 import Google from 'next-auth/providers/google'
+import Github from 'next-auth/providers/github'
 import ResendProvider from 'next-auth/providers/resend'
 
 import { createDb } from '@/lib/db'
@@ -20,12 +21,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth(() => {
     }),
     providers: [
       Google,
+      Github,
       ResendProvider({
         from: 'no-reply@943578.xyz'
       })
     ],
     session: {
       strategy: 'jwt'
+    },
+    callbacks: {
+      jwt: async ({ token, user }) => {
+        if (user) {
+          token.id = user.id
+        }
+        return token
+      },
+      session: async ({ session, token }) => {
+        if (token && session.user) {
+          session.user.id = token.id as string
+        }
+        return session
+      }
     }
   }
 })

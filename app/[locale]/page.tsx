@@ -4,8 +4,6 @@ import { getTranslations } from 'next-intl/server'
 import { TextButton } from '@/app/test'
 import { Link } from '@/i18n/navigation'
 
-export const runtime = 'edge'
-
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('HomePage.meta')
   const site = await getTranslations('siteInfo')

@@ -10,16 +10,27 @@ import Header from '@/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import '../globals.css'
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('siteInfo.meta')
+  const t = await getTranslations('siteInfo')
 
   return {
-    title: t('title'),
-    description: t('description'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
+    title: {
+      default: t('meta.title'),
+      template: `%s | ${t('brandName')}`
+    },
+    description: t('meta.description'),
     icons: { icon: '/logo.svg' },
     authors: [
       {

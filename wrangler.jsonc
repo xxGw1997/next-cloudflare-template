@@ -1,10 +1,18 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "next-cloudflare-template",
+  "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-22",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["nodejs_compat","global_fetch_strictly_public"],
+  "observability": {
+    "logs": {
+      "enabled": true
+    }
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
   "d1_databases": [
     {
       "binding": "DB",
@@ -12,5 +20,37 @@
       "database_id": "6f840ca0-ce12-444e-a319-c14646bfce9e"
     }
   ],
-  "pages_build_output_dir": ".vercel/output/static"
+  "ai": {
+    "binding": "AI"
+  },
+  "r2_buckets": [
+    {
+      "bucket_name": "demo",
+      "binding": "NEXT_INC_CACHE_R2_BUCKET"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      },
+      {
+        "name": "NEXT_TAG_CACHE_DO_SHARDED",
+        "class_name": "DOShardedTagCache"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler", "DOShardedTagCache"]
+    }
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "cloudflare-template"
+    }
+  ],
 }

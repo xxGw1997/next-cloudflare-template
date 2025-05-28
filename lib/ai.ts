@@ -1,3 +1,3 @@
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 
-export const createKV = () => getCloudflareContext().env.KV
+export const createAI = () => getCloudflareContext().env.AI
