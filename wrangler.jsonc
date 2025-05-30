@@ -30,7 +30,7 @@
     "r2_buckets": [
         {
             "bucket_name": "demo",
-            "binding": "demo"
+            "binding": "NEXT_INC_CACHE_R2_BUCKET"
         },
         {
             "bucket_name": "static",
