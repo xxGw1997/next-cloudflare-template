@@ -164,14 +164,14 @@ const setupEnvFile = () => {
 /**
  * 主函数
  */
-const main = () => {
+const main = async () => {
   try {
     console.log('🚀 Starting deployment process...')
 
     validateEnvironment()
     setupEnvFile()
     migrateDatabase()
-    pushWorkerSecret()
+    await pushWorkerSecret()
     deployWorkers()
 
     console.log('🎉 Deployment completed successfully')
